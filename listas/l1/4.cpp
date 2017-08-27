@@ -11,9 +11,6 @@ vector<ii> create_index_table(vector<int>& v, int gap){
     int number_of_index = v.size() / index_size;
     vector<ii> index_table;
 
-    cout << "index_size: " << index_size << endl;
-    cout << "number_of_index: " << number_of_index << endl;
-
     for(int i=0; i < index_size; i++){
         index_table.push_back(ii(i * number_of_index, v[i * number_of_index]));
     }
@@ -180,7 +177,7 @@ int main(){
                 print_index_table(index_table, elements);
                 break;
             case 0:
-                break; 
+                break;
 
         }
     }while(option != 0);
