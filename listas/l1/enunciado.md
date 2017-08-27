@@ -20,6 +20,77 @@
 
 **5. Implemente as três travessias em uma árvore binária: Pré-ordem, Em-ordem e pós-ordem.**
 
+``` c++
+// inserção na árvore binária
+void insert(int num, no** node){
+    if(*node==nullptr){
+        no* new_node = (no*) malloc(sizeof(no));
+        new_node->value = num;
+        new_node->left = nullptr;
+        new_node->right = nullptr;
+        *node = new_node;
+    }
+    else{
+        if((*node)->value > num){
+            insert(num, &((*node)->left));
+        }else{
+            insert(num, &((*node)->right));
+        }
+    }
+}
+
+// travessia pré-ordem
+void pre_order(no* tree){
+    if(tree == NULL){
+        return;
+    }else{
+        printf("Pre-Order Value: %d\n", tree->value);
+        pre_order(tree->left);
+        pre_order(tree->right);
+    }
+}
+
+// travessia em ordem
+void in_order(no* tree){
+    if(tree == nullptr){
+        return;
+    }else{
+        in_order(tree->left);
+        printf("In-Order Value: %d\n", tree->value);
+        in_order(tree->right);
+    }
+}
+
+// travessia pós ordem
+void pos_order(no* tree){
+    if(tree == nullptr){
+        return;
+    }else{
+        pos_order(tree->left);
+        pos_order(tree->right);
+        printf("Pos-Order Value: %d\n", tree->value);
+    }
+}
+
+// teste das funções
+int main(){
+    no* tree = nullptr;
+
+    insert(4, &tree);
+    insert(2, &tree);
+    insert(5, &tree);
+    insert(1, &tree);
+    insert(3, &tree);
+    insert(7, &tree);
+
+    pre_order(tree);
+    in_order(tree);
+    pos_order(tree);
+
+    return 0;
+}
+```
+
 **6. Em uma busca por interpolação, utilize o cálculo dado em sala. Teste o tempo gasto pela busca para encontrar um valor em um vetor de 10, 25, 50, 100, 500, mil, dez mil, cem mil e um milhão de posições preenchidas com números randômicos. A taxa de crescimento é ou não é menor que a ordem de log(n)?**
 
 **Bom trabalho!**
