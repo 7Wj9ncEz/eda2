@@ -81,30 +81,35 @@ void insert(vector<ii>& index_table, vector<int>& v, int element){
     int start_from = result.first == -1 ? 0 : result.first;
     bool inserted = false;
     bool found_empty_space = false;
+    bool found_element = false;
 
-    for(int i=start_from; i < v.size(); i++){
-        if(v[i] == EMPTY){
+    for(int i=start_from; i<v.size(); i++){
+        if(i+1 < (int) v.size() && v[i+1] >= element){
+          if(v[i] == EMPTY){
             found_empty_space = true;
             inserted = true;
             v[i] = element;
             printf("Element [%d] inserted\n", element);
             break;
-        }
-
-        if(i + 1 < (int)v.size() && v[i+1] > element){
-            v.insert(v.begin() + i + 1, element);
+          }else{
+            v.insert(v.begin()+i+1, element);
             printf("Element [%d] inserted\n", element);
             inserted = true;
             break;
+          }
         }
     }
-
     if(not inserted){
-        v.push_back(element);
-    }
-
-    if(not found_empty_space){
-        // rearrange table from appropriate point and rebuild the indexes
+      v.push_back(element);
+    }else if(inserted && !found_empty_space){
+      for(int i=0; i<index_table.size(); i++){
+        if(found_element){
+          index_table[i].first++;
+        }
+        if(index_table[i].first == start_from){
+          found_element = true;
+        }
+      }
     }
 }
 
