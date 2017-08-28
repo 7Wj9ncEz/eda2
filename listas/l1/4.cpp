@@ -4,6 +4,7 @@
 using namespace std;
 using ii = pair<int, int>;
 
+// create index table with given gap
 vector<ii> create_index_table(vector<int>& v, int gap){
     sort(v.begin(), v.end());
 
@@ -75,6 +76,9 @@ ii search(vector<ii>& index, vector<int>& v, int element, bool suppress_log = fa
     return ii(starting_index, index_found);
 }
 
+// insert elements in this way:
+// - if there is a empty slot, insert it in the slot
+// - else, insert in the correct position and rearrange the indexes in the index table
 void insert(vector<ii>& index_table, vector<int>& v, int element, int gap){
     ii result = search(index_table, v, element, true);
 
@@ -99,18 +103,22 @@ void insert(vector<ii>& index_table, vector<int>& v, int element, int gap){
           }
         }
     }
+
     if(not inserted){
       v.push_back(element);
-    }else if(inserted && !found_empty_space){
-      for(int i=0; i<index_table.size(); i++){
-          index_table[i].second = v[index_table[i].first];
-      }
     }
-		if(v.size() % gap == 1){
-			index_table.push_back(ii(v.size()-1, v.back()));
-		}
+    else if(inserted && !found_empty_space){
+        for(int i=0; i<index_table.size(); i++){
+            index_table[i].second = v[index_table[i].first];
+        }
+    }
+
+    if(v.size() % gap == 1){
+        index_table.push_back(ii(v.size()-1, v.back()));
+    }
 }
 
+// remove element from the array and rebuild the table if the variable rebuild_table in enabled
 void remove(vector<ii>& index_table, vector<int>& v, int element, bool rebuild_table){
     ii result = search(index_table, v, element, true);
 
