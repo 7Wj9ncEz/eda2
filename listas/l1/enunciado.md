@@ -93,16 +93,16 @@ int main(){
 
 **6. Em uma busca por interpolação, utilize o cálculo dado em sala. Teste o tempo gasto pela busca para encontrar um valor em um vetor de 10, 25, 50, 100, 500, mil, dez mil, cem mil e um milhão de posições preenchidas com números randômicos. A taxa de crescimento é ou não é menor que a ordem de log(n)?**
 
-| Número de elementos do vetor (n) | log(n) | Média do tempo de 5 execuções (gerar lista + busca binária) | Taxa de crescimento (em relação ao anterior) |
-| :----: | :----: | :----: | :--: |
-| 10 | 2.302 | 0.0064s | --- |
-| 25 | 3.218 | 0.0052s| 0.812 |
-| 50 | 3.912 | 0.0054s | 1.038 |
-| 100 | 4.605 | 0.0072s | 1.333 |
-| 500 | 6.214 | 0.0072s | 1 |
-| 1000| 6.907 | 0.0062s | 0.861 |
-| 10000 | 9.210 | 0.0120s | 1.935 |
-| 100000 | 11.512 | 0.0396s | 3.300 |
-| 1000000 | 13.815 | 0.3588s | 9.060 |
+| Número de elementos do vetor (n) | log(n) | Tempo de geração do vetor | Tempo da busca | Média do tempo total de 5 execuções (gerar lista + busca binária) | Taxa de crescimento (em relação ao anterior) |
+| :-----: | :----: | :----: | :-----: | :-----: | :---: |
+| 10      | 2.302  | 0.005s | 0.0014s | 0.0064s | ----- |
+| 25      | 3.218  | 0.005s | 0.0002s | 0.0052s | 0.812 |
+| 50      | 3.912  | 0.004s | 0.0014s | 0.0054s | 1.038 |
+| 100     | 4.605  | 0.005s | 0.0022s | 0.0072s | 1.333 |
+| 500     | 6.214  | 0.005s | 0.0022s | 0.0072s | 1.000 |
+| 1000    | 6.907  | 0.006s | 0.0002s | 0.0062s | 0.861 |
+| 10000   | 9.210  | 0.010s | 0.0002s | 0.0120s | 1.935 |
+| 100000  | 11.512 | 0.037s | 0.0026s | 0.0396s | 3.300 |
+| 1000000 | 13.815 | 0.358s | 0.0008s | 0.3588s | 9.060 |
 
 **Bom trabalho!**
