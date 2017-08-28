@@ -53,9 +53,11 @@ int main(){
 
     get_n_rand(number, 0, number * 5);
 
-    // for(auto c : v) cout << c << " "; cout << endl;
+    // for(int i = 0 ; i < number; ++i) cout << v[i] << " "; cout << endl;
 
     int random_idx = get_rand(0, number - 1);
+
+	// cout << "Random_idx: " << random_idx << endl; 	
 
     // binary search the element at a random position between 0 and size of array - 1
     int res = bs(number, v[random_idx]);

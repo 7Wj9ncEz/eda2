@@ -93,16 +93,18 @@ int main(){
 
 **6. Em uma busca por interpolação, utilize o cálculo dado em sala. Teste o tempo gasto pela busca para encontrar um valor em um vetor de 10, 25, 50, 100, 500, mil, dez mil, cem mil e um milhão de posições preenchidas com números randômicos. A taxa de crescimento é ou não é menor que a ordem de log(n)?**
 
-| Número de elementos do vetor (n) | log(n) | Tempo de geração do vetor | Tempo da busca | Média do tempo total de 5 execuções (gerar lista + busca binária) | Taxa de crescimento (em relação ao anterior) |
-| :-----: | :----: | :----: | :-----: | :-----: | :---: |
-| 10      | 2.302  | 0.005s | 0.0014s | 0.0064s | ----- |
-| 25      | 3.218  | 0.005s | 0.0002s | 0.0052s | 0.812 |
-| 50      | 3.912  | 0.004s | 0.0014s | 0.0054s | 1.038 |
-| 100     | 4.605  | 0.005s | 0.0022s | 0.0072s | 1.333 |
-| 500     | 6.214  | 0.005s | 0.0022s | 0.0072s | 1.000 |
-| 1000    | 6.907  | 0.006s | 0.0002s | 0.0062s | 0.861 |
-| 10000   | 9.210  | 0.010s | 0.0002s | 0.0120s | 1.935 |
-| 100000  | 11.512 | 0.037s | 0.0026s | 0.0396s | 3.300 |
-| 1000000 | 13.815 | 0.358s | 0.0008s | 0.3588s | 9.060 |
+| Número de elementos do vetor (n) | log(n) | Tempo de geração do vetor | Tempo da busca | Média do tempo total de 5 execuções (gerar lista + busca binária) | Taxa de crescimento (em relação ao anterior) | Taxa de crescimento de log n (com relação ao anterior) |
+| :-----: | :----: | :----: | :-----: | :-----: | :---: | :---: |
+| 10      | 3.321  | 0.005s | 0.001s | 0.006s | ----- | ----  |
+| 25      | 4.643  | 0.006s | 0.001s | 0.007s | 1.428 | 1.343 |
+| 50      | 5.643  | 0.003s | 0.003s | 0.006s | 0.7 | 1.215 |
+| 100     | 6.643  | 0.006s | 0.001s | 0.007s | 1.571 | 1.177 |
+| 500     | 8.965  | 0.005s | 0.002s | 0.007s | 1.000 | 1.349 |
+| 1000    | 9.965  | 0.003s | 0.001s | 0.004s | 0.09 | 1.111  |
+| 10000   | 13.287  | 0.011s | 0.002s | 0.013s | 1.00 | 1.333 |
+| 100000  | 16.609 | 0.039s | 0.005s | 0.044s | 12.999 | 1.25 |
+| 1000000 | 19.931 | 0.373s | 0.002s | 0.375s | 0.307 | 1.2  |
+
+
 
 **Bom trabalho!**

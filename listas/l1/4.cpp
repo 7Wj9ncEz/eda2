@@ -75,7 +75,7 @@ ii search(vector<ii>& index, vector<int>& v, int element, bool suppress_log = fa
     return ii(starting_index, index_found);
 }
 
-void insert(vector<ii>& index_table, vector<int>& v, int element){
+void insert(vector<ii>& index_table, vector<int>& v, int element, int gap){
     ii result = search(index_table, v, element, true);
 
     int start_from = result.first == -1 ? 0 : result.first;
@@ -84,7 +84,7 @@ void insert(vector<ii>& index_table, vector<int>& v, int element){
     bool found_element = false;
 
     for(int i=start_from; i<v.size(); i++){
-        if(i+1 < (int) v.size() && v[i+1] >= element){
+        if(v[i] >= element){
           if(v[i] == EMPTY){
             found_empty_space = true;
             inserted = true;
@@ -92,7 +92,7 @@ void insert(vector<ii>& index_table, vector<int>& v, int element){
             printf("Element [%d] inserted\n", element);
             break;
           }else{
-            v.insert(v.begin()+i+1, element);
+            v.insert(v.begin()+i, element);
             printf("Element [%d] inserted\n", element);
             inserted = true;
             break;
@@ -103,14 +103,12 @@ void insert(vector<ii>& index_table, vector<int>& v, int element){
       v.push_back(element);
     }else if(inserted && !found_empty_space){
       for(int i=0; i<index_table.size(); i++){
-        if(found_element){
-          index_table[i].first++;
-        }
-        if(index_table[i].first == start_from){
-          found_element = true;
-        }
+          index_table[i].second = v[index_table[i].first];
       }
     }
+		if(v.size() % gap == 1){
+			index_table.push_back(ii(v.size()-1, v.back()));
+		}
 }
 
 void remove(vector<ii>& index_table, vector<int>& v, int element, bool rebuild_table){
@@ -131,8 +129,9 @@ void remove(vector<ii>& index_table, vector<int>& v, int element, bool rebuild_t
 }
 
 int main(){
+		int gap = 2;
     vector<int> elements = { 2, 4, 80, 100, 200, 350, 400, 560, 1200, 1300 };
-    vector<ii> index_table = create_index_table(elements, 2);
+    vector<ii> index_table = create_index_table(elements, gap);
 
     int option;
 
@@ -153,7 +152,7 @@ int main(){
                     printf("Add element: ");
                     cin >> to_insert;
 
-                    insert(index_table, elements, to_insert);
+                    insert(index_table, elements, to_insert, gap);
                     break;
                 }
             case 2:
