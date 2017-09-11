@@ -52,4 +52,10 @@ Na quarta iteração, o gap é 0 (divisão inteira de 1 / 2). Com isso o algorit
 
 #### 6. Implemente o Heapsort das duas formas: o modo normal, que utiliza um único vetor, e a segunda forma, como uma estrutura separada onde a ordenação é feita inserindo todos os dados e depois removendo todos. Cronometre a execução e trace um gráfico. Qual a mais rápida? A taxa de crescimento é a mesma?
 
+A solução mais rápida é a que utiliza apenas um vetor, que chamaremos de solução A. A solução B, que utiliza o vetor auxiliar, é significativamente mais lenta e pejorativa em questão de espaço de armazenamento. Isso porque, para vetores muito grandes, o dobro da memória utilizada não é algo aceitável.
+
+![gráfico de tempo por elementos das soluções](tempo-elemento.png)
+
+No gráfico acima, percebe-se que: apesar de os dois comportarem-se de forma linear, a taxa de crescimento da solução B é muito maior do que a taxa de crescimento da solução A, sendo pouco recomendado o seu uso.
+
 #### 7. Implemente um algoritmo que misture o Counting sort e o Radix sort para ordenar um vetor de nomes. Utilize qualquer lista pública de nomes. Cronometre a execução e trace um gráfico. A taxa de crescimento é mesmo linear?

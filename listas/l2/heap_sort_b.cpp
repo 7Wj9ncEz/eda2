@@ -2,6 +2,20 @@
 
 using namespace std;
 
+random_device rd;
+mt19937 eng(rd());
+
+int get_random(int low, int high){
+  uniform_int_distribution<> distribution(low, high);
+  return distribution(eng);
+}
+
+void fill_vector(vector<int>& v, int low, int high, int n){
+  for(int i=0; i<n; i++){
+    v.push_back(get_random(low, high));
+  }
+}
+
 void create_heap(vector<int>& v, int inicio, int fim){
   int aux = v[inicio];
   int j = inicio*2+1;  // pega primeiro filho
@@ -47,9 +61,8 @@ void print_vector(vector<int> v){
 
 
 int main(){
-  vector<int> o = {8, 3, 35, 5, 2, 54, 6, 20, 30};
-  print_vector(o);
+  vector<int> o;
+  fill_vector(o, 0, 10000000, 100000);
   heap_sort(o);
-  print_vector(o);
   return 0;
 }
