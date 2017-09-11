@@ -3,7 +3,7 @@
 using namespace std;
 
 int get_median_out_of_5(vector<int> v){
-    // use insertion sort of array of 5 elements
+    // use insertion sort in array of 5 elements
     for(int i=1;i < (int)v.size();i++){
         int j = i;
 
@@ -17,6 +17,7 @@ int get_median_out_of_5(vector<int> v){
     return v[(v.size() - 1)/2];
 }
 
+// get median of medians
 int get_mom(vector<int> v){
     vector<int> medians;
 
