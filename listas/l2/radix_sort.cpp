@@ -2,6 +2,16 @@
 
 using namespace std;
 
+void fill_vector(vector<string>&v , int n){
+  string s = "abcdfeghijklkmnop";
+  sort(s.begin(), s.end());
+  do {
+    v.push_back(s);
+    n--;
+  } while(next_permutation(s.begin(), s.end()) && n);
+  printf("Size: %d\n", (int)v.size());
+}
+
 int find_maximum(vector<string> x){
   int max = 0;
   for(int i=0; i< (int)x.size(); ++i){
@@ -55,11 +65,8 @@ void radix_sort(vector<string>& v){
 }
 
 int main(){
-    vector<string> v = {"victor", "andre", "josue", "anderson", "guilherme"};
-    printf("Before:\n");
-    print_vector(v);
+    vector<string> v;
+    fill_vector(v, 1000000);
     radix_sort(v);
-    printf("After:\n");
-    print_vector(v);
     return 0;
 }

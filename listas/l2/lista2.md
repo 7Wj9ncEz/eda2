@@ -180,3 +180,9 @@ A solução mais rápida é a que utiliza apenas um vetor, que chamaremos de sol
 No gráfico acima, percebe-se que: apesar de os dois comportarem-se de forma linear, a taxa de crescimento da solução B é muito maior do que a taxa de crescimento da solução A, sendo pouco recomendado o seu uso.
 
 #### 7. Implemente um algoritmo que misture o Counting sort e o Radix sort para ordenar um vetor de nomes. Utilize qualquer lista pública de nomes. Cronometre a execução e trace um gráfico. A taxa de crescimento é mesmo linear?
+
+Para testar o vetor, usou-se um algoritmo de permutação para variar uma string e preencher o vetor a ser ordenado com n posições diferentes. 
+
+![gráfico de desempenho do radix sort](radix-sort.png)
+
+Como pode-se ver no gráfico acima, a execução rodou de forma linear.
