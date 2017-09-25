@@ -9,6 +9,8 @@ typedef struct _node {
     struct _node *parent, *left, *right;
 } node;
 
+int count_rotations = 0;
+
 node* grandpa(node* n);
 node* uncle(node* n);
 const char* print_color(int c);
@@ -35,13 +37,15 @@ class RBTree {
 
 // Main function
 int main(){
-    vector<int> v { 41, 5, 90, 39, 79, 45, 81, 65, 59, 66 };
+//    vector<int> v { 41, 5, 90, 39, 79, 45, 81, 65, 59, 66 };
+    vector<int> v { 10,7, 6, 8, 12, 11, 13 };
 
+    count_rotations = 0;
     RBTree* tree = new RBTree();
 
     for(auto c : v){
         printf("--------------------------------------------------\n");
-        printf("Inserting %d\n", c);
+        printf("Inserting [%d]\n", c);
         tree->insert(c);
 
         printf("--------------------------------------------------\n");
@@ -57,6 +61,8 @@ int main(){
     printf("Complete tree\n");
     cout << endl;
     tree->pre_order(tree->root);
+
+    printf("\nNumber of rotations: %d\n", count_rotations);
 
     return 0;
 }
@@ -189,6 +195,7 @@ void RBTree::case5(node* n){
 }
 
 void RBTree::rotate_right(node* n){
+    count_rotations++;
     // check if n is leaf
     if(n->left == nullptr)
         return;
@@ -218,6 +225,7 @@ void RBTree::rotate_right(node* n){
 }
 
 void RBTree::rotate_left(node* n){
+    count_rotations++;
     // check if n is leaf
     if(n->right == nullptr)
         return;
