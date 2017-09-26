@@ -279,3 +279,9 @@ int main(){
 ```
 
 #### 6. Gere 1000 números randômicos de 0 a 10000. Conte as rotações e cronometre a inserção de todos os números em uma Árvore AVL e em uma Árvore V&P. Qual fez mais rotações? Qual foi mais rápida?
+
+Segundo a imagem abaixo, é possível perceber que a árvore Vermelha e Preta faz menos rotações que a árvore AVL. Entretanto, o tempo de execução dos algoritmos das duas árvores é bastante similar para os 1000 números randômicos gerados.
+
+![arvores](trees_rotations.png)
+
+*Obs.:* Os códigos referentes à implementação das árvores AVL e Vermelha e Preta se encontram no arquivo __.zip__ enviado.
