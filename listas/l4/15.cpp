@@ -19,13 +19,13 @@ int main(){
 
     vector<ii> commitee;
 
-    for(int i=0;i<intervals.size();i++){
+    for(int i=0; i < (int)intervals.size(); i++){
         cout << "cur: " << i << endl;
         ii cur = intervals[i];
         ii to_insert = ii(-1, -1);
         int j = i + 1;
 
-        for(; j < intervals.size(); j++){
+        for(; j < (int)intervals.size(); j++){
             cout << "    intersect " << j << endl;
             ii curj = intervals[j];
 
@@ -40,7 +40,7 @@ int main(){
         i = j;
     }
 
-    cout << "Commitee: ";
+    cout << endl << "Commitee: ";
     for(auto c : commitee){
         printf("[%d, %d] ", c.first, c.second);
     }

@@ -19,7 +19,7 @@ int main(){
     int acc_time = jobs[0].first;
     int sum = acc_time * jobs[0].second;
 
-    for(int i=1;i<jobs.size();i++){
+    for(int i=1;i<(int)jobs.size();i++){
         acc_time += jobs[i].first;
         sum += (jobs[i].second * acc_time);
     }
