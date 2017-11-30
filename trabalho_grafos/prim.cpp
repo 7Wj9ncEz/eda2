@@ -3,17 +3,24 @@
 
 using namespace std;
 using tiii = tuple<int, int, int>;
+using ii = pair<int, int>;
 
 void menu();
 void show_edges(map<int, tiii>& edges, bool fixed[]);
 bool in_range(int c, int low, int high);
 bool edge_exists(int src, int dst, map<int, tiii>& edges);
 bool any_fixed(int number_of_edges, bool fixed[]);
+void process_min(int vtx);
+void process_max(int vtx);
+
+vector<int> taken;
+priority_queue<tiii> pq;
+vector<tiii> adj[MAX];
 
 int main(){
-    vector<tiii> adj[MAX];
     map<int, tiii> edges;
     bool fixed[MAX];
+    memset(fixed, 0, sizeof fixed);
 
     int number_of_nodes;
     do {
@@ -63,20 +70,90 @@ int main(){
             fixed[id] = true;
         }
         if(option == 3){
-            // TODO choose root node
             if(any_fixed(edges.size(), fixed)){
                 cout << "As there are fixed edges, the result may not be a tree and," << endl;
                 cout << "even if it's a tree, may not be a minimum spanning tree." << endl;
                 cout << "Keep that in mind." << endl;
             }
+
+            while(!pq.empty()) pq.pop();
+            int root_node;
+            cout << "Insert root node of your spanning tree: ";
+            cin >> root_node;
+            taken.assign(number_of_nodes+1, 0);
+            int mst_cost = 0;
+            vector<tiii> mst;
+
+            for(int i=0; i< (int) edges.size(); i++){
+              if(fixed[i]){
+                mst_cost += get<2>(edges[i]);
+                process_min(get<0>(edges[i]));
+                mst.push_back(edges[i]);
+              }
+            }
+
+            process_min(root_node);
+            while(!pq.empty()){
+              tiii front = pq.top(); pq.pop();
+              int u = -get<1>(front), w = -get<0>(front);
+              if(!taken[u]){
+                mst.push_back(make_tuple(-get<2>(front), u, w));
+                mst_cost += w;
+                process_min(u);
+              }
+            }
+
+            cout << "MST Cost: " << mst_cost << endl;
+
+            for(auto e : mst){
+                printf("Source: %d Destiny: %d Weight: %d\n", get<0>(e),
+                                                              get<1>(e),
+                                                              get<2>(e));
+            }
         }
+
         if(option == 4){
-            // TODO choose root node
             if(any_fixed(number_of_nodes, fixed)){
                 cout << "As there are fixed edges, the result may not be a tree and," << endl;
                 cout << "even if it's a tree, may not be a maximum spanning tree." << endl;
                 cout << "Keep that in mind." << endl;
             }
+
+            while(!pq.empty()) pq.pop();
+            int root_node;
+            cout << "Insert root node of your spanning tree: ";
+            cin >> root_node;
+            taken.assign(number_of_nodes+1, 0);
+            int mst_cost = 0;
+            vector<tiii> mst;
+
+            for(int i=0; i< (int) edges.size(); i++){
+              if(fixed[i]){
+                mst_cost += get<2>(edges[i]);
+                process_max(get<0>(edges[i]));
+                mst.push_back(edges[i]);
+              }
+            }
+
+            process_max(root_node);
+            while(!pq.empty()){
+              tiii front = pq.top(); pq.pop();
+              int u = get<1>(front), w = get<0>(front);
+              if(!taken[u]){
+                mst.push_back(make_tuple(get<2>(front), u, w));
+                mst_cost += w;
+                process_max(u);
+              }
+            }
+
+            cout << "MST Cost: " << mst_cost << endl;
+
+            for(auto e : mst){
+                printf("Source: %d Destiny: %d Weight: %d\n", get<0>(e),
+                                                              get<1>(e),
+                                                              get<2>(e));
+            }
+
         }
         if(option == 5){
             cout << "Clearing fixed edges.." << endl;
@@ -93,7 +170,7 @@ int main(){
         cout << endl;
     } while(option != 0);
 
-    cout << "So long and thanks for all the fish!" << endl; 
+    cout << "So long and thanks for all the fish!" << endl;
 
     return 0;
 }
@@ -109,6 +186,20 @@ void menu(){
     cout << "6 - show edges" << endl;
     cout << "7 - clear console" << endl;
     cout << "0 - quit" << endl;
+}
+
+void process_min(int vtx){
+  taken[vtx] = 1;
+  for(auto v : adj[vtx]){
+    if(!taken[get<1>(v)]) pq.push(make_tuple(-get<2>(v), -get<1>(v), -vtx));
+  }
+}
+
+void process_max(int vtx){
+  taken[vtx] = 1;
+  for(auto v : adj[vtx]){
+    if(!taken[get<1>(v)]) pq.push(make_tuple(get<2>(v), get<1>(v), vtx));
+  }
 }
 
 void show_edges(map<int, tiii>& edges, bool fixed[]){
@@ -133,7 +224,7 @@ bool edge_exists(int src, int dst, map<int, tiii>& edges){
 }
 
 bool any_fixed(int number_of_edges, bool fixed[]){
-    for(int i=1;i<=number_of_edges;i++)
+    for(int i=0;i<number_of_edges;i++)
         if(fixed[i])
             return true;
     return false;
