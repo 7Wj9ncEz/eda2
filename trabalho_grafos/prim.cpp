@@ -179,7 +179,6 @@ void menu(){
     cout << "What do you want to do?" << endl;
     cout << "1 - add edge" << endl;
     cout << "2 - fix edge" << endl;
-    // FIXME minimum spanning subgraph
     cout << "3 - get minimum spanning tree" << endl;
     cout << "4 - get maximum spanning tree" << endl;
     cout << "5 - clear fixed edges" << endl;
